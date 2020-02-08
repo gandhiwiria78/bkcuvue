@@ -40,10 +40,12 @@ export const pengelola = {
         .then( function( response ){
           commit('setDataS', response.data.model );
           commit('setDataStatS', 'success');
+          //console.log('test',response)
         })
         .catch( error => {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
+          //console.log('eroor',error)
         });
     },
 

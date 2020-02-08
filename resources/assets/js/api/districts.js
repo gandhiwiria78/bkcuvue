@@ -11,7 +11,7 @@ export default {
   indexRegencies: function( p, id ){
     return axios.get('/api/regencies/indexRegencies/' + id, {params: p});
   },
-  
+
   getRegencies: function( id ){
     return axios.get('/api/districts/getRegencies/' + id);
   },
@@ -35,4 +35,5 @@ export default {
   destroy: function( id ){
     return axios.delete('/api/districts/' + id);
   }
+  
 }

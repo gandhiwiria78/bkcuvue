@@ -4,6 +4,7 @@ namespace App\Support;
 use File;
 use Image;
 use Validator;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class Helper{
@@ -17,12 +18,11 @@ class Helper{
 			File::delete($path . $kelas->gambar . 'n.jpg');
 			$formatedName = '';
 		}else{
-
 			// validate image request
 			$validator = Validator::make($request->all(), [
 				'gambar' => 'image|mimes:jpeg,png,jpg|max:2048'
 			]);
-
+			
 			if ($validator->fails()) {
 				if(!empty($request->gambar)){
 					return $request->gambar;
@@ -39,20 +39,19 @@ class Helper{
 
 			$imageData = $request->gambar;
 			list($width, $height) = getimagesize($imageData);
-
 			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$request->name),10,'') . '_' .uniqid();
 			$fileName =  $formatedName. '.jpg';
 			$fileName2 =  $formatedName. 'n.jpg';
-
+			
 			//image
 			if($width > 1920){
-					Image::make($imageData->getRealPath())->resize(1920, null,
-						function ($constraint) {
-								$constraint->aspectRatio();
-						})
-						->save($path . $fileName);
+				Image::make($imageData->getRealPath())->resize(1920, null,
+					function ($constraint) {
+							$constraint->aspectRatio();
+					})
+					->save($path . $fileName);
 			}else{
-					Image::make($imageData->getRealPath())->save($path . $fileName);
+				Image::make($imageData->getRealPath())->save($path . $fileName);
 			}
 
 			//thumbnail image
@@ -60,7 +59,7 @@ class Helper{
 				function ($constraint) {
 						$constraint->aspectRatio();
 				})
-				->save($path . $fileName2);
+			->save($path . $fileName2);
 		}
 
 		return $formatedName;
@@ -87,7 +86,7 @@ class Helper{
 			foreach($images as $img){
 				$src = $img->getAttribute('src');
 
-					// if the img source is 'data-url'
+				// if the img source is 'data-url'
 				if(preg_match('/data:image/', $src)){ 
 					preg_match('/data:image\/(?<mime>.*?)\;/', $src, $groups);
 					$mimetype = $groups['mime']; 
@@ -126,5 +125,42 @@ class Helper{
 		}
 
 		return $dom->saveHTML();
+	}
+
+	public static function file_processing($filepath,$request,$kelas){
+		$file = $request->file('file');
+		if(empty($file)){
+			$files = $request->files;
+			$i = 0;
+			$fileArray = $files->all();
+			$fileArray = $fileArray['items'];
+			$size = '';
+			foreach ($fileArray as $key ) {
+				$filename= $key->getClientOriginalName();
+				$ext = $key->getClientOriginalExtension();
+				$size = $key->getClientSize();
+				$filename = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$filename),10,'') . '_' .uniqid().'.'.$ext;
+				if (Storage::disk('my_files')->putFileAs( $filepath, $key,$filename)) {
+					
+					$formatedName[] = array(
+						'name'=>$filename,
+						'path'=> $filepath.$filename,
+						'jenis' =>$ext,
+						'size'=> $size
+					);
+
+				}else{
+					dd('gagal');
+				}
+				
+			}
+			return $formatedName;
+		}else{
+			if (Storage::disk('my_files')->putFileAs($filepath , $file , $request['fileName'] )) {
+				$formatedName = $request['fileName'] ;
+			}
+		}
+		return $formatedName;
+		
 	}
 }

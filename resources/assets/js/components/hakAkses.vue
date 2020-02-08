@@ -512,7 +512,41 @@
 							}
 						]
 					},
-					
+					{
+						name: 'Surat',
+						icon: 'icon-users4',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_suratkeluar',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+							},
+							{
+								name: 'Tambah',
+								key: 'create_suratkeluar',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+							},
+							{
+								name: 'Ubah',
+								key: 'update_suratkeluar',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_suratkeluar',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+							},
+						]
+					},
 				]
 			}
 		},

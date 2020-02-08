@@ -326,32 +326,30 @@
 				id_cu: '',
 				utama: '',
 				UploadAdapter: function (loader) {
-          this.loader = loader
-          this.upload = () => {
-            const body = new FormData();
-						body.append('gambar', this.loader.file);
-
-						let token = window.localStorage.getItem('token');
-						
-            return fetch('https://bkcuvue.test/api/v1/artikel/upload', {
+					this.loader = loader
+					this.upload = () => {
+						const body = new FormData();
+										body.append('gambar', this.loader.file);
+									let token = window.localStorage.getItem('token');
+						return fetch('https://bkcuvue.test/api/v1/artikel/upload', {
 							headers: {"Authorization": 'Bearer ' + token},
-              body: body,
-              method: 'POST'
-            })
-              .then(response => response.json())
-              .then(downloadUrl => {
-                return {
-									default: downloadUrl
-                }
-              })
-              .catch(error => {
-                console.log(error);
-              });
-          }
-          this.abort = () => {
-            console.log('Abort upload.')
-          }
-        },
+							body: body,
+							method: 'POST'
+						})
+						.then(response => response.json())
+						.then(downloadUrl => {
+							return {
+								default: downloadUrl
+							}
+						})
+						.catch(error => {
+							console.log(error);
+						});
+					}
+					this.abort = () => {
+						console.log('Abort upload.')
+					}
+				},
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -369,6 +367,7 @@
 			if(this.currentUser.id_cu === 0){
 				this.$store.dispatch('cu/getPus',this.currentUser.id_pus);
 			}
+
 			if(this.$route.meta.mode !== 'edit' && this.form.id_cu === undefined){
 				this.form.id_cu = this.currentUser.id_cu;
 				this.changeCU(this.currentUser.id_cu);
@@ -444,6 +443,7 @@
 			},
 			save() {
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
+				//console.log('Form Data', formData);
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						if(this.$route.meta.mode === 'edit'){
@@ -489,7 +489,6 @@
 			},
 			modalOpen_Penulis(){
 				this.id_cu = this.form.id_cu;
-
 				this.modalShow = true;
 				this.modalState = 'normal1';
 				this.modalColor = 'bg-primary';
@@ -535,6 +534,7 @@
 				updatePenulisResponse: 'update',
 				updatePenulisStat: 'updateStat',
 			}),
+			
 			modelPus() {
 				return this.$store.getters.getPusS;
 			}

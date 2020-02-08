@@ -10,6 +10,7 @@
 
 					<!-- message -->
 					<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
+
 					</message>
 
 
@@ -39,8 +40,6 @@
 								:columnData="columnData"></infografis-data>
 						</div>
 					</transition>
-
-
 				</div>
 			</div>
 		</div>

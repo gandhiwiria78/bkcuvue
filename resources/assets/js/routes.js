@@ -30,6 +30,10 @@ import produkCu_form from './views/produkCu/form.vue';
 import user from './views/user/index.vue';
 import user_form from './views/user/form.vue';
 import profile from './views/user/profile.vue';
+import suratMasuk from './views/surat/suratMasuk/index.vue';
+import suratKeluar from './views/surat/suratKeluar/index.vue';
+import suratMasukEdit from './views/surat/suratMasuk/formSuratMasuk.vue';
+import suratKeluarEdit from './views/surat/suratKeluar/formSuratKeluar.vue';
 
 const routes = [
 
@@ -38,7 +42,6 @@ const routes = [
 		name: 'login', 
 		components: { default: login },
 		meta: { notLoggedIn: true }},
-	
 	// user
 	{ path: '/user/cu/:cu',
 		name: 'userCu', 
@@ -142,7 +145,6 @@ const routes = [
 		name: 'tempatEdit', 
 		components: { default: tempat_form, 'header': header}, 
 		meta: { requiresAuth: true, mode:'edit' } },	
-
 	// cu
 	{ path: '/cu',
 		name: 'cu', 
@@ -263,7 +265,6 @@ const routes = [
 		name: 'laporanGerakan', 
 		components: { default: laporanGerakan, 'header': header },
 		meta: { requiresAuth: true  }},	
-
 	// laporan draft
 	{ path: '/laporancu/draft',
 		name: 'laporanCuDraft', 
@@ -272,7 +273,33 @@ const routes = [
 	{ path: '/laporantp/draft',
 		name: 'laporanTpDraft', 
 		components: { default: laporanTp_draft, 'header': header },
-		meta: { requiresAuth: true }},		
+		meta: { requiresAuth: true }},	
+	// Surat Masuk
+	{ path: '/surat/masuk',
+		name: 'suratMasuk',
+		components: { default: suratMasuk, 'header': header},
+		meta: { requiresAuth: true} // ini untuk mengetahui login atau sudah atau belm
+	},
+	{ path: '/surat/keluar',
+		name: 'suratKeluar',
+		components: { default: suratKeluar, 'header': header},
+		meta: { requiresAuth: true} // ini untuk mengetahui login atau sudah atau belm
+	},		
+	{ path: '/surat/masuk/edit/:id',
+		name: 'suratmasukEdit',
+		components: { default: suratMasukEdit, 'header': header},
+		meta: { requiresAuth: true, mode:'edit'} // ini untuk mengetahui login atau sudah atau belm
+	},
+	{ path: '/surat/keluar/edit/:id',
+		name: 'suratkeluarEdit',
+		components: { default: suratKeluarEdit, 'header': header},
+		meta: { requiresAuth: true, mode:'edit'} 
+	},
+	{ path: '/surat/suratmasuk/create',
+		name: 'suratmasukCreate',
+		components: { default: suratMasukEdit, 'header': header},
+		meta: { requiresAuth: true,  } // ini untuk mengetahui login atau sudah atau belm
+	},
 ]
 
 export default routes

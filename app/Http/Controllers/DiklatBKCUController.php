@@ -56,7 +56,7 @@ class DiklatBKCUController extends Controller{
 		]);
 
 		$kelas->sasaran()->sync(array_flatten($request->sasaran));
- 
+		
 		return response()
 			->json([
 				'saved' => true,
@@ -68,12 +68,11 @@ class DiklatBKCUController extends Controller{
 	public function edit($id)
 	{
 		$kelas = Kegiatan::with('tempat','sasaran')->findOrFail($id);
-
 		return response()
-				->json([
-						'form' => $kelas,
-						'option' => []
-				]);
+			->json([
+				'form' => $kelas,
+				'option' => []
+			]);
 	}
 
 	public function update(Request $request, $id)

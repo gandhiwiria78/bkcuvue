@@ -20,8 +20,7 @@ class UserController extends Controller
 
 	public function index()
 	{
-			$table_data = User::with('Cu','pus')->select('id','id_cu','id_pus','name','email','username','gambar','status','created_at')->advancedFilter();
-			
+		$table_data = User::with('Cu','pus')->select('id','id_cu','id_pus','name','email','username','gambar','status','created_at')->advancedFilter();
     	return response()
 			->json([
 				'model' => $table_data
@@ -391,6 +390,10 @@ class UserController extends Controller
 		$this->hakAkses($request->reset_password,'reset_password',$user);
 		$this->hakAkses($request->hak_akses_user,'hak_akses_user',$user);
 		$this->hakAkses($request->status_user,'status_user',$user);
+		$this->hakAkses($request->create_suratkeluar,'create_suratkeluar',$user);
+		$this->hakAkses($request->update_suratkeluar,'update_suratkeluar',$user);
+		$this->hakAkses($request->index_suratkeluar,'index_suratkeluar',$user);
+		$this->hakAkses($request->destroy_suratkeluar,'destroy_suratkeluar',$user);
 	}
 
 	public function count()

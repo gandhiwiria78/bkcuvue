@@ -849,7 +849,7 @@ export const laporanCu = {
           commit('setDataStatS', 'fail');
         });
     },
-
+    
     // load by cu
     indexCu( { commit }, [p, id] ){
       commit('setDataStatS', 'loading');
@@ -924,7 +924,6 @@ export const laporanCu = {
         });
     },
     
-
     // load by periode
     indexPeriode( { commit }, [p, periode] ){
       commit('setDataStatS', 'loading');
@@ -973,7 +972,7 @@ export const laporanCu = {
     // load by tp
     indexPearlsTp( { commit }, [p, id] ){
       commit('setPearlsStat', 'loading');
-      
+
       laporanTpAPI.indexPearlsTp( p, id )
         .then( function( response ){
           commit('setPearls', response.data.model);

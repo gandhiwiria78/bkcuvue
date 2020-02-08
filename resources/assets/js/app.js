@@ -17,11 +17,13 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import VueCkeditor from 'vue-ckeditor5';
 import vSelect from 'vue-select';
 
+
 Validator.localize('id', id); //localization
 Vue.use(VueRouter);
 Vue.use(VeeValidate, {
   fieldsBagName: 'formFields'
 });
+
 Vue.use(Vue2Filters);
 Vue.use(VueKatex);
 Vue.use(VTooltip);

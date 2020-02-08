@@ -6,7 +6,6 @@ use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Pengelola extends Model {
-
     use Dataviewer, LogsActivity;
 
     protected $table = 'pengelola';
@@ -18,20 +17,18 @@ class Pengelola extends Model {
         'name'=>'required',
         'email' =>  'email'
     ];
-    
+
     protected $fillable = [
         'nim','nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','gambar','darah','tinggi','berat','kontak','gambar','id_villages','id_districts','id_regencies','id_provinces'
     ];
 
     protected $allowedFilters = [
         'nim','nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','berat','kontak','created_at','updated_at',
-        
         'pekerjaan_aktif.tingkat','pekerjaan_aktif.cu.name','pekerjaan_aktif.name','pendidikan_tertinggi.tingkat','pendidikan_tertinggi.name','villages.name', 'districts.name', 'regencies.name', 'provinces.name'
     ];
 
     protected $orderable = [
-        'nim','nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','berat','kontak','created_at','updated_at',
-        
+        'nim','nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','berat','kontak','created_at','updated_at',   
         'pengelola_pekerjaan.tingkat', 'pekerjaan_aktif.tingkat'
     ];
 

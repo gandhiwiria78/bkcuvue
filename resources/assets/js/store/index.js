@@ -22,6 +22,8 @@ import { pengelola } from './modules/pengelola';
 import { produkCu } from './modules/produkCu';
 import { diklatBKCU } from './modules/diklatBKCU';
 import { tempat } from './modules/tempat';
+import { surat } from './modules/surat';
+import { files } from './modules/files';
 
 Vue.use(Vuex);
 
@@ -47,6 +49,8 @@ export default new Vuex.Store({
 		 pengelola,
 		 produkCu,
 		 diklatBKCU,
-		 tempat
+		 tempat,
+		 surat,
+		 files
 	 }
 });

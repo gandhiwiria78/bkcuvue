@@ -25,19 +25,15 @@
 									<!-- foto -->
 									<div class="col-md-12">
 										<div class="form-group">
-
 											<!-- title -->
 											<h5>Foto TP/KP:</h5>
-
 											<!-- imageupload -->
 											<app-image-upload :image_loc="'/images/tp/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
 										</div>
 									</div>  
-
 									<!-- CU -->
 									<div class="col-md-4" v-if="profile.id_cu === 0">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
-
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.id_cu')}">
 												<i class="icon-cross2" v-if="errors.has('form.id_cu')"></i>

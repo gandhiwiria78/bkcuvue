@@ -1,17 +1,13 @@
 <template>
 	<div>
-
 		<!-- main panel -->
 		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelUrl="excelUrl" :isUploadExcel="false" @fetch="fetch">
-
 			<!-- button desktop -->
 			<template slot="button-desktop">
-
 				<!-- tambah -->
 				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['create_' + kelas]">
 					<i class="icon-plus3"></i> Tambah
 				</router-link>
-
 				<!-- ubah-->
 				<button @click.prevent="ubahData(selectedItem.id, selectedItem.id_cu)" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
 					<i class="icon-pencil5"></i> Ubah
@@ -33,7 +29,6 @@
 					<i class="icon-pushpin"></i> <span v-if="selectedItem.utamakan == 1">Tidak Utamakan</span>
 					<span v-else>Utamakan</span>
 				</button>
-
 			</template>
 
 			<!-- button mobile -->
@@ -233,24 +228,23 @@
 
 			// when updating data
       updateStat(value) {
-				this.modalState = value;
-				this.modalButton = 'Ok';
-				
-				if(value == "success"){
-					this.modalTitle = this.updateMessage.message;
-					this.modalContent = '';
-					this.fetch();
-				}else if(value == "fail"){
-					this.modalContent = this.updateMessage;
-				}else{
-					this.modalContent = '';
-				}
+			this.modalState = value;
+			this.modalButton = 'Ok';
+			if(value == "success"){
+				this.modalTitle = this.updateMessage.message;
+				this.modalContent = '';
+				this.fetch();
+			}else if(value == "fail"){
+				this.modalContent = this.updateMessage;
+			}else{
+				this.modalContent = '';
+			}
       }
 		},
 		methods: {
 			fetch(params){
 				if(this.$route.params.cu == 'semua'){
-					this.disableColumnCu(false);
+					// this.disableColumnCu(false);
 					this.$store.dispatch(this.kelas + '/index', params);
 					this.excelUrl = this.kelas;
 				}else{
