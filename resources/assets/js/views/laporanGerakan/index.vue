@@ -23,14 +23,10 @@
 						<div class="col-lg-4">
 							<table-laporan-cu-widget :id_cu="'0'" :columnData="columnData" :columnDataPearls="columnDataPearls"></table-laporan-cu-widget>
 						</div>
-<<<<<<< HEAD
 					</div>
 
 					<table-data :title="title" :kelas="kelas"></table-data>
 
-=======
-					</transition>
->>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 				</div>
 			</div>
 		</div>

@@ -453,36 +453,9 @@
 					windowsConfig: 1,                           // overwrite config
 				},
 				UploadAdapter: function (loader) {
-<<<<<<< HEAD
 					
 				},
                 editorData: '<p>Content of the editor.</p>',
-=======
-					this.loader = loader
-					this.upload = () => {
-						const body = new FormData();
-										body.append('gambar', this.loader.file);
-									let token = window.localStorage.getItem('token');
-						return fetch('https://bkcuvue.test/api/v1/artikel/upload', {
-							headers: {"Authorization": 'Bearer ' + token},
-							body: body,
-							method: 'POST'
-						})
-						.then(response => response.json())
-						.then(downloadUrl => {
-							return {
-								default: downloadUrl
-							}
-						})
-						.catch(error => {
-							console.log(error);
-						});
-					}
-					this.abort = () => {
-						console.log('Abort upload.')
-					}
-				},
->>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -730,13 +703,6 @@
 				updatePenulisResponse: 'update',
 				updatePenulisStat: 'updateStat',
 			}),
-<<<<<<< HEAD
-=======
-			
-			modelPus() {
-				return this.$store.getters.getPusS;
-			}
->>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 		}
 	}
 

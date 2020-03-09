@@ -4,12 +4,8 @@ namespace App\Support;
 use File;
 use Image;
 use Validator;
-<<<<<<< HEAD
 use App\LaporanTp;
 use App\LaporanCu;
-=======
-use Illuminate\Support\Facades\Storage;
->>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 use Illuminate\Http\Request;
 
 class Helper{
@@ -81,35 +77,7 @@ class Helper{
 				$src2 = $img2->getAttribute('src');
 				$array2[] = $src2;
 		}
-<<<<<<< HEAD
  
-=======
-
-		$images = $dom->getElementsByTagName('img');
-			// foreach <img> in the submited message
-			foreach($images as $img){
-				$src = $img->getAttribute('src');
-
-				// if the img source is 'data-url'
-				if(preg_match('/data:image/', $src)){ 
-					preg_match('/data:image\/(?<mime>.*?)\;/', $src, $groups);
-					$mimetype = $groups['mime']; 
-					// Generating a random filename
-					$filename = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$request->name),10,'') . '_' .uniqid();
-					$filepath = "$path.$filename.$mimetype";
-					// You can put your directory to upload image 
-					$image = Image::make($src)
-					// resize if required
-					/* ->resize(300, 200) */
-					->encode($mimetype, 100) // encode file to the specified mimetype
-					->save(public_path($filepath)); 
-					$new_src = $filepath;
-					$img->removeAttribute('src');
-					$img->setAttribute('src', $new_src);
-				} // <!--endif
-			} // 
-
->>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 		return $dom->saveHTML();
 	}
 
@@ -135,43 +103,4 @@ class Helper{
 		return $dom->saveHTML();
 	}
 
-<<<<<<< HEAD
-=======
-	public static function file_processing($filepath,$request,$kelas){
-		$file = $request->file('file');
-		if(empty($file)){
-			$files = $request->files;
-			$i = 0;
-			$fileArray = $files->all();
-			$fileArray = $fileArray['items'];
-			$size = '';
-			foreach ($fileArray as $key ) {
-				$filename= $key->getClientOriginalName();
-				$ext = $key->getClientOriginalExtension();
-				$size = $key->getClientSize();
-				$filename = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$filename),10,'') . '_' .uniqid().'.'.$ext;
-				if (Storage::disk('my_files')->putFileAs( $filepath, $key,$filename)) {
-					
-					$formatedName[] = array(
-						'name'=>$filename,
-						'path'=> $filepath.$filename,
-						'jenis' =>$ext,
-						'size'=> $size
-					);
-
-				}else{
-					dd('gagal');
-				}
-				
-			}
-			return $formatedName;
-		}else{
-			if (Storage::disk('my_files')->putFileAs($filepath , $file , $request['fileName'] )) {
-				$formatedName = $request['fileName'] ;
-			}
-		}
-		return $formatedName;
-		
-	}
->>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 }

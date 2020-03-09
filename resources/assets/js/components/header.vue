@@ -474,13 +474,8 @@
 								<i class="icon-plus22"></i> Tambah Lembaga Mitra 
 							</router-link>
 							<!-- divider -->
-<<<<<<< HEAD
 							<div class="dropdown-divider" v-if="currentUser.can['create_cu'] || currentUser.can['create_tp'] || currentUser.can['create_aktivis'] || currentUser.can['create_produk_cu'] || currentUser.can['create_mitra_orang'] || currentUser.can['create_mitra_lembaga']"></div> 
 
-=======
-							<div class="dropdown-divider"></div> 
-							
->>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 							<!-- cu -->
 							<!-- if bkcu account -->
 							<router-link :to="{ name: 'cu' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['index_cu']">
@@ -613,19 +608,17 @@
 							<!-- divider -->
 							<div class="dropdown-divider" v-if="currentUser.can['index_mitra_orang'] || currentUser.can['index_mitra_lembaga']"></div> 
 
-<<<<<<< HEAD
 							<div class="dropdown-submenu" v-if="currentUser.can['index_mitra_orang'] || currentUser.can['index_mitra_lembaga']" :class="{'show' : dropdownMenu == 'mitra'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('mitra')">
 									<i class="icon-briefcase"></i> Mitra
-=======
+								</a>
+							</div>
 							<!-- surat -->
 							<div class="dropdown-submenu" >
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('surat')">
 									<i class="icon-mail5"></i> Surat
->>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 								</a>
 
-<<<<<<< HEAD
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'mitra'}">
 	
 									<!-- mitra perseorangan -->
@@ -636,26 +629,10 @@
 									<!-- mitra perseorangan -->
 									<router-link :to="{ name: 'mitraLembaga' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['index_mitra_lembaga']">
 									  Lembaga
-=======
-									<router-link :to="{ name: 'suratMasuk'}" class="dropdown-item"  exact >
-										<i class="icon-mail-read"></i> Masuk
-									</router-link>
-
-									<router-link :to="{ name: 'suratKeluar'}" class="dropdown-item"  exact >
-										<i class="icon-mailbox"></i> Keluar
->>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 									</router-link>
 								</div>
-<<<<<<< HEAD
 
 							</div>
-=======
-							</div>
-							<!-- Surat 
-							<router-link :to="{ name:'surat' }" class="dropdown-item" active-class="active" exact v-if="currentUser">
-								<i class="icon-newspaper"></i> Surat
-							</router-link> -->
->>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 
 						</div>
 					</li>
@@ -743,13 +720,9 @@
 							<i class="icon-cog3"></i>
 							<span class="d-md-none ml-2">Pengaturan</span>
 						</a>
-<<<<<<< HEAD
 						
 						<div class="dropdown-menu dropdown-menu-right">
 
-=======
-						<div class="dropdown-menu">
->>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 							<!-- tambah user -->
 							<router-link :to="{ name:'userCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_user']">
 								<i class="icon-plus22"></i> Tambah User
@@ -847,7 +820,6 @@
 				laporanCuDraftCountStat: '',
 				laporanTpDraftCount: [],
 				laporanTpDraftCountStat: '',
-<<<<<<< HEAD
 				state: '',
 				modalShow: false,
 				modalState: '',
@@ -855,8 +827,6 @@
 				modalContent: '',
 				modalColor: '',
 				modalButton: '',
-=======
->>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 			}
 		},
 		created(){
@@ -1022,19 +992,12 @@
 					this.modalButton = 'Kembali Ke Halaman Login';
 				})
 				.catch((err) => {
-<<<<<<< HEAD
 					this.modalState = 'fail';
 					this.modalContent = this.err;
 				});
 			},
 			momentYear(){
 				return moment().year();
-=======
-					console.log(err);
-				})
-				this.$store.dispatch('auth/logout');
-				this.$router.push('/login');
->>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 			}
 		},
 		computed: {

@@ -44,14 +44,11 @@ import user from './views/user/index.vue';
 import user_form from './views/user/form.vue';
 import user_aktivitas from './views/user/aktivitas.vue';
 import profile from './views/user/profile.vue';
-<<<<<<< HEAD
 import filemanager from './views/sistem/Filemanager.vue';
-=======
 import suratMasuk from './views/surat/suratMasuk/index.vue';
 import suratKeluar from './views/surat/suratKeluar/index.vue';
 import suratMasukEdit from './views/surat/suratMasuk/formSuratMasuk.vue';
 import suratKeluarEdit from './views/surat/suratKeluar/formSuratKeluar.vue';
->>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 
 const routes = [
 
@@ -382,7 +379,6 @@ const routes = [
 		meta: { requiresAuth: true }},	
 	{ path: '/laporantp/draft',
 		name: 'laporanTpDraft', 
-<<<<<<< HEAD
 		components: { default: laporanTp_draft, 'header': header, 'footer': footer  },
 		meta: { requiresAuth: true }},
 	// edit konsolidasi draft	
@@ -400,10 +396,6 @@ const routes = [
 		name: 'filemanager', 
 		components: { default: filemanager, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true, mode:'filemanager' } },		
-	
-=======
-		components: { default: laporanTp_draft, 'header': header },
-		meta: { requiresAuth: true }},	
 	// Surat Masuk
 	{ path: '/surat/masuk',
 		name: 'suratMasuk',
@@ -430,7 +422,6 @@ const routes = [
 		components: { default: suratMasukEdit, 'header': header},
 		meta: { requiresAuth: true,  } // ini untuk mengetahui login atau sudah atau belm
 	},
->>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 ]
 
 export default routes

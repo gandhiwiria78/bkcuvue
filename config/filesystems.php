@@ -61,17 +61,10 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
         ],
-<<<<<<< HEAD
 
 
 
 
-=======
-        'my_files' => [
-            'driver' => 'local',
-            'root'   => public_path() . '/files',
-        ],
->>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
     ],
 
 ];

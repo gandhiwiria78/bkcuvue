@@ -1,12 +1,8 @@
 <template>
 	<div>
 		<!-- main panel -->
-<<<<<<< HEAD
 		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl" @fetch="fetch">
 
-=======
-		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelUrl="excelUrl" :isUploadExcel="false" @fetch="fetch">
->>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 			<!-- button desktop -->
 			<template slot="button-desktop">
 				<!-- tambah -->
