@@ -22,15 +22,14 @@
       @else
       <li class="breadcrumb-item">-</li>
       @endif
-      <li class="breadcrumb-item active" aria-current="page">{{ $artikel->name }}</li>
+      <li class="breadcrumb-item active" aria-current="page">{{ str_limit($artikel->name, 100) }}</li>
     </ol>
   </div>
 
 </section>
 
 <!-- Content -->
-<section id="content" >
-
+<section id="content">
 
   <div class="content-wrap">
 
@@ -76,27 +75,28 @@
 
             <!-- Entry Content -->
             <div class="ql-editor">
-              
 
-                <!-- post -->
-                {!! $artikel->content !!}
+              <!-- post -->
+              {!! $artikel->content !!}
 
-                <!-- Post Single - Share
-                ============================================= -->
-            </div><!-- .entry end -->
-            <div class="si-share noborder clearfix">
-              <span>Share this Post:</span>
-              <div>
-                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::fullUrl()) }}" target="_blank" class="social-icon si-borderless si-facebook">
-                  <i class="icon-facebook"></i>
-                  <i class="icon-facebook"></i>
-                </a>
-                <a href="https://twitter.com/intent/tweet?url={{ urlencode(Request::fullUrl()) }}" target="_blank" class="social-icon si-borderless si-twitter">
-                  <i class="icon-twitter"></i>
-                  <i class="icon-twitter"></i>
-                </a>
-              </div>
-            </div><!-- Post Single - Share End -->
+              <!-- Post Single - Share
+              ============================================= -->
+              <div class="si-share noborder clearfix">
+                <span>Share this Post:</span>
+                <div>
+                  <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::fullUrl()) }}" target="_blank" class="social-icon si-borderless si-facebook">
+                    <i class="icon-facebook"></i>
+                    <i class="icon-facebook"></i>
+                  </a>
+                  <a href="https://twitter.com/intent/tweet?url={{ urlencode(Request::fullUrl()) }}" target="_blank" class="social-icon si-borderless si-twitter">
+                    <i class="icon-twitter"></i>
+                    <i class="icon-twitter"></i>
+                  </a>
+                </div>
+              </div><!-- Post Single - Share End -->
+
+            </div>
+          </div><!-- .entry end -->
 
           <!-- Penulis -->
           @if($artikel->penulis)
