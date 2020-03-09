@@ -12,20 +12,17 @@ class CustomQueryBuilder {
                 $this->makeFilter($query, $filter);
             }
         }
-
         return $query;
     }
 
     protected function makeFilter($query, $filter)
     {
         // find the type of column
-
         if(strpos($filter['column'], '.') !== false) {
             // nested column
-
             list($relation, $filter['column']) = explode('.', $filter['column']);
             $filter['match'] = 'and';
-
+            
             if($filter['column'] == 'count') {
                 $this->{camel_case($filter['operator'])}($filter, $query, $relation);
             } else {
@@ -34,11 +31,9 @@ class CustomQueryBuilder {
                 });
             }
         } else {
-
             // normal column
             $this->{camel_case($filter['operator'])}($filter, $query);
         }
-
     }
 
     public function equalTo($filter, $query)

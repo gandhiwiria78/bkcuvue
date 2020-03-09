@@ -63,8 +63,8 @@
 				:cancelIcon="cancelIcon"
 				:cancelState="cancelState"
 				:formValidation="'form'"
-				@cancelClick="cancelClick"></form-button>
-
+				@cancelClick="cancelClick">
+				</form-button>
 		</form>
 
 	</div>
@@ -77,7 +77,6 @@
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
 	
-
 	export default {
 		props:['id_cu'],
 		components: {

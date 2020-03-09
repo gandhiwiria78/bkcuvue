@@ -1,7 +1,6 @@
 <template>
 	<div>
 		<div class="card">
-		
 			<!-- image preview -->
 			<div class="card-body text-center">
 				<img :src="'/images/no_image.jpg'" style="width:15em;" v-if="image === '' && image_temp === ''">
@@ -9,7 +8,6 @@
 				<img :src="image" style="width:15em;" v-else> 
 			</div>
 		</div>
-
 		<!-- upload button -->
 		<div class="row">
 			<div class="col-md-10">
@@ -18,9 +16,7 @@
 			<div class="col-md-2">
 				<button type="button" class="btn btn-light btn-block" @click.prevent="close()" :disabled="image_temp === ''"><i class="icon-cross"></i> Batal</button>
 			</div>
-			
 		</div>
-		
 	</div>
 </template>
 <script>
@@ -60,7 +56,7 @@
 				let vm = this;
 				reader.onload = (e) => {
 					vm.image = e.target.result;
-					// this.$emit('input', vm.image)
+					// this.$emit('input', vm.image) 
 				};
 				reader.readAsDataURL(file);
 			},

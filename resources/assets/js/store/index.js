@@ -26,9 +26,14 @@ import { anggotaCu } from './modules/anggotaCu';
 import { produkCu } from './modules/produkCu';
 import { diklatBKCU } from './modules/diklatBKCU';
 import { tempat } from './modules/tempat';
+<<<<<<< HEAD
 import { notification } from './modules/notification';
 import { saran } from './modules/saran';
 import { errorLog } from './modules/errorLog';
+=======
+import { surat } from './modules/surat';
+import { files } from './modules/files';
+>>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 
 Vue.use(Vuex);
 
@@ -59,8 +64,13 @@ export default new Vuex.Store({
 		 produkCu,
 		 diklatBKCU,
 		 tempat,
+<<<<<<< HEAD
 		 notification,
 		 saran,
 		 errorLog
+=======
+		 surat,
+		 files
+>>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 	 }
 });

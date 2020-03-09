@@ -18,7 +18,7 @@
 					<!-- table data -->
 					<table-data 
 						:title="title" 
-						:kelas="kelas"></table-data>
+						:kelas="kelas"> </table-data>
 
 				</div>
 			</div>

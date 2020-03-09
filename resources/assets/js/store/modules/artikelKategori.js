@@ -46,6 +46,7 @@ export const artikelKategori = {
     indexCu( {commit}, [p, id] ){
       commit('setDataStatS', 'loading');
       
+      
       ArtikelKategoriAPI.indexCu( p, id )
         .then( function( response ){
           commit('setDataS', response.data.model);

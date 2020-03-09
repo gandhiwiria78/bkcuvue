@@ -110,7 +110,7 @@
 								TIDAK IDEAL
 							</span>
 						</div>
-
+						
 						<div class="ml-3 align-self-center">
 							<button type="button" class="btn btn-light btn-icon rounded-round">
 								<b>E5</b>

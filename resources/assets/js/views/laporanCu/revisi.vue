@@ -192,7 +192,7 @@
 					this.modalShow = true;
 				}else if(type == 'edit'){
 					this.formEdit.periode = this.modelLaporan.periode;
-
+					
 					if(this.$route.meta.mode == 'detail'){
 						this.formEdit.id_cu = this.modelLaporan.id_cu;
 						this.formEdit.id_tp = '';

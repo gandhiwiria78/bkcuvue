@@ -118,8 +118,12 @@ class UserController extends Controller
 
 	public function index()
 	{
+<<<<<<< HEAD
 			$table_data = User::with('Cu','pus')->where('id','!=',1)->advancedFilter();
 			
+=======
+		$table_data = User::with('Cu','pus')->select('id','id_cu','id_pus','name','email','username','gambar','status','created_at')->advancedFilter();
+>>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
     	return response()
 			->json([
 				'model' => $table_data
@@ -454,6 +458,7 @@ class UserController extends Controller
 		
 	public function hakAksesSave($request,$user)
 	{
+<<<<<<< HEAD
 		foreach($this->permissions as $item){
 			if(in_array($item, $request)) {
 				if(!$user->hasPermissionTo($item)){
@@ -463,6 +468,67 @@ class UserController extends Controller
 				$user->revokePermissionTo($item);
 			}
 		}
+=======
+		$this->hakAkses($request->index_artikel,'index_artikel',$user);
+		$this->hakAkses($request->create_artikel,'create_artikel',$user);
+		$this->hakAkses($request->update_artikel,'update_artikel',$user);
+		$this->hakAkses($request->destroy_artikel,'destroy_artikel',$user);
+		$this->hakAkses($request->terbitkan_artikel,'terbitkan_artikel',$user);
+		$this->hakAkses($request->utamakan_artikel,'utamakan_artikel',$user);
+		$this->hakAkses($request->index_artikel_penulis,'index_artikel_penulis',$user);
+		$this->hakAkses($request->create_artikel_penulis,'create_artikel_penulis',$user);
+		$this->hakAkses($request->update_artikel_penulis,'update_artikel_penulis',$user);
+		$this->hakAkses($request->destroy_artikel_penulis,'destroy_artikel_penulis',$user);
+		$this->hakAkses($request->index_artikel_kategori,'index_artikel_kategori',$user);
+		$this->hakAkses($request->create_artikel_kategori,'create_artikel_kategori',$user);
+		$this->hakAkses($request->update_artikel_kategori,'update_artikel_kategori',$user);
+		$this->hakAkses($request->destroy_artikel_kategori,'destroy_artikel_kategori',$user);
+		$this->hakAkses($request->index_diklat_bkcu,'index_diklat_bkcu',$user);
+		$this->hakAkses($request->create_diklat_bkcu,'create_diklat_bkcu',$user);
+		$this->hakAkses($request->update_diklat_bkcu,'update_diklat_bkcu',$user);
+		$this->hakAkses($request->destroy_diklat_bkcu,'destroy_diklat_bkcu',$user);
+		$this->hakAkses($request->index_tempat,'index_tempat',$user);
+		$this->hakAkses($request->create_tempat,'create_tempat',$user);
+		$this->hakAkses($request->update_tempat,'update_tempat',$user);
+		$this->hakAkses($request->destroy_tempat,'destroy_tempat',$user);
+		$this->hakAkses($request->index_cu,'index_cu',$user);
+		$this->hakAkses($request->create_cu,'create_cu',$user);
+		$this->hakAkses($request->update_cu,'update_cu',$user);
+		$this->hakAkses($request->destroy_cu,'destroy_cu',$user);
+		$this->hakAkses($request->index_tp,'index_tp',$user);
+		$this->hakAkses($request->create_tp,'create_tp',$user);
+		$this->hakAkses($request->update_tp,'update_tp',$user);
+		$this->hakAkses($request->destroy_tp,'destroy_tp',$user);
+		$this->hakAkses($request->index_produk_cu,'index_produk_cu',$user);
+		$this->hakAkses($request->create_produk_cu,'create_produk_cu',$user);
+		$this->hakAkses($request->update_produk_cu,'update_produk_cu',$user);
+		$this->hakAkses($request->destroy_produk_cu,'destroy_produk_cu',$user);
+		$this->hakAkses($request->index_pengelola,'index_pengelola',$user);
+		$this->hakAkses($request->create_pengelola,'create_pengelola',$user);
+		$this->hakAkses($request->update_pengelola,'update_pengelola',$user);
+		$this->hakAkses($request->destroy_pengelola,'destroy_pengelola',$user);
+		$this->hakAkses($request->index_laporan_cu,'index_laporan_cu',$user);
+		$this->hakAkses($request->create_laporan_cu,'create_laporan_cu',$user);
+		$this->hakAkses($request->update_laporan_cu,'update_laporan_cu',$user);
+		$this->hakAkses($request->destroy_laporan_cu,'destroy_laporan_cu',$user);
+		$this->hakAkses($request->diskusi_laporan_cu,'diskusi_laporan_cu',$user);
+		$this->hakAkses($request->index_laporan_tp,'index_laporan_tp',$user);
+		$this->hakAkses($request->create_laporan_tp,'create_laporan_tp',$user);
+		$this->hakAkses($request->update_laporan_tp,'update_laporan_tp',$user);
+		$this->hakAkses($request->destroy_laporan_tp,'destroy_laporan_tp',$user);
+		$this->hakAkses($request->diskusi_laporan_tp,'diskusi_laporan_tp',$user);
+		$this->hakAkses($request->index_user,'index_user',$user);
+		$this->hakAkses($request->create_user,'create_user',$user);
+		$this->hakAkses($request->update_user,'update_user',$user);
+		$this->hakAkses($request->destroy_user,'destroy_user',$user);
+		$this->hakAkses($request->reset_password,'reset_password',$user);
+		$this->hakAkses($request->hak_akses_user,'hak_akses_user',$user);
+		$this->hakAkses($request->status_user,'status_user',$user);
+		$this->hakAkses($request->create_suratkeluar,'create_suratkeluar',$user);
+		$this->hakAkses($request->update_suratkeluar,'update_suratkeluar',$user);
+		$this->hakAkses($request->index_suratkeluar,'index_suratkeluar',$user);
+		$this->hakAkses($request->destroy_suratkeluar,'destroy_suratkeluar',$user);
+>>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 	}
 
 	public function count()

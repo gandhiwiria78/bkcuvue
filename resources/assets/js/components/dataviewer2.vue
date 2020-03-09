@@ -1020,6 +1020,7 @@
     watch: {
       itemDataStat(value) {
         if (value == 'success') {
+          
           this.query.page = this.itemData.current_page;
           this.fieldExcel();
           this.calculatePagination();

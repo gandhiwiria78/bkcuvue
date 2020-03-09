@@ -7,11 +7,9 @@
 		<div class="page-content pt-0">
 			<div class="content-wrapper">
 				<div class="content">
-
 					<!-- message -->
 					<message v-if="errors.any('form') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
 					</message>
- 
 					<!-- main panel -->
 					<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
 

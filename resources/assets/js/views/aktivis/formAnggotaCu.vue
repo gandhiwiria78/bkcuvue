@@ -82,7 +82,7 @@
             numeralThousandsGroupStyle: 'thousand',
             numeralDecimalScale: 2,
             numeralDecimalMark: ',',
-            delimiter: '.'
+            delimiter: '.',
           }
         }
 			}
@@ -94,6 +94,7 @@
 				profile: 'profile',
 				profileStat: 'profileStat'
 			}),
+			
 		}
 	}
 </script>

@@ -22,23 +22,31 @@ class ArtikelController extends Controller{
 				'(SELECT name FROM cu WHERE artikel.id_cu = cu.id) as cu_name,
 				(SELECT name FROM artikel_kategori WHERE artikel.id_artikel_kategori = artikel_kategori.id) as kategori_name,
 				(SELECT name FROM artikel_penulis WHERE artikel.id_artikel_penulis = artikel_penulis.id) as penulis_name'
-			))->advancedFilter();
-
-    	return response()
-			->json([
-				'model' => $table_data
-			]);
+			)
+			)->advancedFilter();
+			
+			return response()
+				->json([
+					'model' => $table_data
+				]);
 	}
+
 
 	public function indexCu($id)
 	{
+<<<<<<< HEAD
 			$table_data = Artikel::with('kategori','penulis','Cu')->where('id_cu',$id)->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','name','gambar','utamakan','terbitkan','created_at','updated_at',
+=======
+
+			$table_data = Artikel::with('ArtikelKategori','ArtikelPenulis','Cu')->where('id_cu',$id)->select('id','id_cu','id_artikel_kategori','id_artikel_penulis','name','gambar','utamakan','terbitkan','created_at','updated_at',
+>>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 			DB::raw(
 				'(SELECT name FROM cu WHERE artikel.id_cu = cu.id) as cu_name,
-				(SELECT name FROM artikel_kategori WHERE artikel.id_artikel_kategori = artikel_kategori.id) as kategori_name,
-				(SELECT name FROM artikel_penulis WHERE artikel.id_artikel_penulis = artikel_penulis.id) as penulis_name,
-				(SELECT name FROM cu WHERE artikel.id_cu = cu.id) as cu_name'
-			))->advancedFilter();
+				 (SELECT name FROM artikel_kategori WHERE artikel.id_artikel_kategori = artikel_kategori.id) as kategori_name,
+				 (SELECT name FROM artikel_penulis WHERE artikel.id_artikel_penulis = artikel_penulis.id) as penulis_name,
+				 (SELECT name FROM cu WHERE artikel.id_cu = cu.id) as cu_name'
+			)
+			)->advancedFilter();
 
     	return response()
 			->json([
@@ -58,6 +66,7 @@ class ArtikelController extends Controller{
 
 	public function store(Request $request)
 	{
+		
 		$this->validate($request,Artikel::$rules);
 
 		$name = $request->name;
@@ -67,7 +76,7 @@ class ArtikelController extends Controller{
 			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,'');
 		else
 			$fileName = '';
-
+		
 		// processing summernote content	
 		// if(!empty($request->content))	
 		// 	$content = Helper::dom_processing($request,public_path($this->imagepath));
@@ -81,7 +90,7 @@ class ArtikelController extends Controller{
 		return response()
 			->json([
 				'saved' => true,
-				'message' => $this->message. ' ' .$name. ' berhasil ditambah'
+				'message' => $this->message. ' ' .$name. ' berhasil ditambah',
 			]);
 	}
 
@@ -176,7 +185,7 @@ class ArtikelController extends Controller{
 			->json([
 				'saved' => true,
 				'message' => $message
-			]);
+		]);
 	}
 
 	public function destroy($id)
@@ -188,6 +197,8 @@ class ArtikelController extends Controller{
 			File::delete($this->imagepath . $kelas->gambar . '.jpg');
 			File::delete($this->imagepath . $kelas->gambar . 'n.jpg');
 		}
+
+		
 
 		$kelas->delete();
 

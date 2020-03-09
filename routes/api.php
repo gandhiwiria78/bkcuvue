@@ -210,6 +210,7 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::delete('/diklatBKCU/{id}', 'DiklatBKCUController@destroy');
     });
 
+<<<<<<< HEAD
     // aktivis
     Route::group(['middleware' => ['permission:index_aktivis']], function () {
         Route::get('/aktivis/index/{tingkat}', 'AktivisController@index');
@@ -327,6 +328,47 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::delete('/anggotaCuDraft/destroy/{id}', 'AnggotaCuDraftController@destroy');
         Route::delete('/anggotaCuDraft/destroyAll', 'AnggotaCuDraftController@destroyAll');
         Route::get('/anggotaCuDraft/count', 'AnggotaCuDraftController@count');
+=======
+    // pengelola
+    Route::group(['middleware' => ['permission:index_pengelola']], function () {
+        Route::get('/pengelola', 'PengelolaController@index');
+        Route::get('/pengelola/get', 'PengelolaController@get');
+        Route::get('/pengelola/indexCu/{id}', 'PengelolaController@indexCu');         
+        Route::get('/pengelola/getCu/{id}', 'PengelolaController@getCu');
+        Route::get('/pengelola/count', 'PengelolaController@count');
+    });
+    Route::group(['middleware' => ['permission:create_pengelola']], function () {
+        Route::get('/pengelola/create', 'PengelolaController@create');
+        Route::post('/pengelola/store', 'PengelolaController@store');
+    });
+    Route::group(['middleware' => ['permission:update_pengelola']], function () {
+        Route::get('/pengelola/editIdentitas/{id}', 'PengelolaController@editIdentitas');
+        Route::post('/pengelola/updateIdentitas/{id}', 'PengelolaController@updateIdentitas');
+        Route::get('/pengelola/indexPekerjaan/{id}', 'PengelolaController@indexPekerjaan');
+        Route::get('/pengelola/indexPendidikan/{id}', 'PengelolaController@indexPendidikan');
+        Route::get('/pengelola/indexAnggotaCu/{id}', 'PengelolaController@indexAnggotaCu');
+        Route::get('/pengelola/indexKeluarga/{id}', 'PengelolaController@indexKeluarga');
+        Route::get('/pengelola/indexOrganisasi/{id}', 'PengelolaController@indexOrganisasi');
+        Route::get('/pengelola/createPekerjaan', 'PengelolaController@createPekerjaan');
+        Route::get('/pengelola/createPendidikan', 'PengelolaController@createPendidikan');
+        Route::get('/pengelola/createOrganisasi', 'PengelolaController@createOrganisasi');
+        Route::get('/pengelola/createKeluarga', 'PengelolaController@createKeluarga');
+        Route::get('/pengelola/createAnggotaCu', 'PengelolaController@createAnggotaCu');
+        Route::post('/pengelola/savePekerjaan/{id}', 'PengelolaController@savePekerjaan');
+        Route::post('/pengelola/savePendidikan/{id}', 'PengelolaController@savePendidikan');
+        Route::post('/pengelola/saveOrganisasi/{id}', 'PengelolaController@saveOrganisasi');
+        Route::post('/pengelola/saveKeluarga/{id}', 'PengelolaController@saveKeluarga');
+        Route::post('/pengelola/saveAnggotaCu/{id}', 'PengelolaController@saveAnggotaCu');
+        Route::delete('/pengelola/pekerjaan/{id}', 'PengelolaController@destroyPekerjaan');
+        Route::delete('/pengelola/pendidikan/{id}', 'PengelolaController@destroyPendidikan');
+        Route::delete('/pengelola/organisasi/{id}', 'PengelolaController@destroyOrganisasi');
+        Route::delete('/pengelola/keluarga/{id}', 'PengelolaController@destroyKeluarga');
+        Route::delete('/pengelola/anggotaCu/{id}', 'PengelolaController@destroyAnggotaCu');
+
+    });
+    Route::group(['middleware' => ['permission:destroy_pengelola']], function () {
+        Route::delete('/pengelola/{id}', 'PengelolaController@destroy');
+>>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
     });
 
     //laporan cu
@@ -463,11 +505,45 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::delete('/pengumuman/{id}', 'PengumumanController@destroy');
     });
 
+    //surat Keluar 
+ 
+    Route::get('/surat/{id}','suratController@indexSurat');
+    Route::get('/surat/create','suratController@create');
+    Route::post('/surat/store','suratController@store');
+    Route::post('/surat/update/{id}', 'suratController@update');
+    Route::get('/surat/keluar/index','suratController@indexSuratKeluar');
+    Route::get('/surat/keluar/trance','suratController@indexTranceSuratKeluar');
+    Route::delete('/surat/keluar/destroy/{id}','suratController@destroySuratKeluarPermanent');
+    Route::delete('/surat/keluar/softdestroy/{id}','suratController@softDestroySuratKeluar');
+    Route::post('/surat/keluar/restore/{id}','suratController@restoreSuratKeluar');
+    Route::get('/surat/keluar/lastid','suratController@getLastId');
+
+    // surat Masuk
+    Route::get ('/surat/masuk/index','suratController@indexSuratMasuk');
+    Route::get ('/surat/masuk/trance','suratController@indexTranceSuratMasuk');
+    Route::get('/surat/masuk/edit/{id}','suratController@getSuratMasuk');
+    Route::post('/surat/masuk/store','suratController@storeSuratMasuk');
+    Route::post('/surat/masuk/update/{id}','suratController@updateSuratMasuk');
+    Route::delete('/surat/masuk/destroy/{id}','suratController@destroySuratMasukPermanent');
+    Route::delete('/surat/masuk/softdestroy/{id}','suratController@softDestroySuratMasuk');
+    Route::post('/surat/masuk/restore/{id}','suratController@restoreSuratMasuk');
+
+    
+    // surat_files pivot 
+    Route::delete('/surat/pivot/{id}','suratController@destroyPivot');
+    Route::post('/surat/getFiles/{id}','suratController@getFilesSurat');
+
+    //files 
+    Route::get('/files/index','FilesControllerp@index');
+    Route::post('/files/store','FilesController@store');
+    Route::delete('/files/{id}','FilesController@destroy');
+    Route::delete('/files/draft/{id}','FilesController@destroyDraft');
+
     // puskopdit
     Route::get('/pus', 'PusController@index');
     Route::get('/pus_all', 'PusController@indexAll');
     Route::post('/pus/store', 'PusController@store');
-
+    
     // tempat 
     Route::get('/tempat', 'TempatController@index');
     Route::get('/tempat/get/{id}', 'TempatController@get');

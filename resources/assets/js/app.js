@@ -21,11 +21,13 @@ import 'katex/dist/katex.min.css';
 
 
 
+
 Validator.localize('id', id); //localization
 Vue.use(VueRouter);
 Vue.use(VeeValidate, {
   fieldsBagName: 'formFields'
 });
+
 Vue.use(Vue2Filters);
 Vue.use(VueKatex);
 Vue.use(VTooltip);

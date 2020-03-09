@@ -235,6 +235,7 @@ class DiklatBKCUController extends Controller{
 		]);
 
 		$kelas->sasaran()->sync(array_flatten($request->sasaran));
+<<<<<<< HEAD
 
 		if($request->panitia){
 			$panitiaArray = array();
@@ -253,6 +254,9 @@ class DiklatBKCUController extends Controller{
 			$kelas->panitia_dalam()->sync($panitiaArray);
 		}
  
+=======
+		
+>>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 		return response()
 			->json([
 				'saved' => true,
@@ -293,13 +297,17 @@ class DiklatBKCUController extends Controller{
 
 	public function edit($id)
 	{
+<<<<<<< HEAD
 		$kelas = Kegiatan::with('tempat','sasaran','panitia_dalam.pekerjaan_aktif.cu','panitia_luar')->findOrFail($id);
 
+=======
+		$kelas = Kegiatan::with('tempat','sasaran')->findOrFail($id);
+>>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 		return response()
-				->json([
-						'form' => $kelas,
-						'option' => []
-				]);
+			->json([
+				'form' => $kelas,
+				'option' => []
+			]);
 	}
 
 	public function update(Request $request, $id)

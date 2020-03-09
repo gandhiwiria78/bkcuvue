@@ -60,4 +60,5 @@ class Tempat extends Model {
     {
         return $this->belongsTo('App\Region\Villages','id_villages','id')->select('id','name');
     }
+    
 }

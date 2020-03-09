@@ -19,7 +19,6 @@ class CuController extends Controller{
 	public function index()
 	{
 		$table_data = Cu::with('Villages','Districts','Regencies','Provinces')->withCount('hasTp')->advancedFilter();
-
 		return response()
 		->json([
 			'model' => $table_data
@@ -120,7 +119,7 @@ class CuController extends Controller{
 
 		$kelas = Cu::findOrFail($id);
 
-		// processing single image upload
+		// processing single image 
 		if(!empty($request->gambar))
 			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request,$kelas);
 		else

@@ -197,8 +197,8 @@
 
 							<!-- tambah artikel -->
 							<router-link :to="{ name:'artikelCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_artikel']">
-            		<i class="icon-plus22"></i> Tambah Artikel
-         		  </router-link>
+								<i class="icon-plus22"></i> Tambah Artikel
+							</router-link>
 
 							 <!-- tambah penulis -->
 							<router-link :to="{ name:'artikelKategoriCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_artikel_kategori']">
@@ -308,6 +308,7 @@
 							<router-link :to="{ name: 'artikelPenulisCu', params:{cu: currentUser.id_cu}  }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_artikel_penulis'] && currentUser.id_cu != 0">
 								<i class="icon-pencil6"></i> Penulis Artikel
 							</router-link>
+							
 
 							<!-- divider -->
 							<div class="dropdown-divider" v-if="currentUser.can['index_pengumuman']"></div> 
@@ -442,11 +443,12 @@
 						</a>
 
 						<div class="dropdown-menu">
-
+							
 							<!-- tambah cu -->
 							<router-link :to="{ name:'cuCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['create_cu']">
 								<i class="icon-plus22"></i> Tambah CU
 							</router-link>
+
 
 							<!-- tambah tpcu -->
 							<router-link :to="{ name:'tpCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_tp']">
@@ -471,10 +473,14 @@
 							<router-link :to="{ name:'mitraLembagaCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['create_mitra_lembaga']">
 								<i class="icon-plus22"></i> Tambah Lembaga Mitra 
 							</router-link>
-
 							<!-- divider -->
+<<<<<<< HEAD
 							<div class="dropdown-divider" v-if="currentUser.can['create_cu'] || currentUser.can['create_tp'] || currentUser.can['create_aktivis'] || currentUser.can['create_produk_cu'] || currentUser.can['create_mitra_orang'] || currentUser.can['create_mitra_lembaga']"></div> 
 
+=======
+							<div class="dropdown-divider"></div> 
+							
+>>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 							<!-- cu -->
 							<!-- if bkcu account -->
 							<router-link :to="{ name: 'cu' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['index_cu']">
@@ -485,7 +491,6 @@
 							<router-link :to="{ name: 'cuProfile', params:{id: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu != 0 && currentUser.can['index_cu']">
 								<i class="icon-office"></i> Profile CU
 							</router-link>
-
 							<!-- tp -->
 							<!-- if bkcu account -->
 							<div class="dropdown-submenu" v-if="currentUser.can['index_tp'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu == 'tp'}">
@@ -497,6 +502,7 @@
 									<router-link :to="{ name: 'tpCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
 										Semua CU
 									</router-link>
+									
 
 									<!-- divider -->
 									<div class="dropdown-divider"></div> 
@@ -603,14 +609,23 @@
 								</div>
 							</div>
 
+							
 							<!-- divider -->
 							<div class="dropdown-divider" v-if="currentUser.can['index_mitra_orang'] || currentUser.can['index_mitra_lembaga']"></div> 
 
+<<<<<<< HEAD
 							<div class="dropdown-submenu" v-if="currentUser.can['index_mitra_orang'] || currentUser.can['index_mitra_lembaga']" :class="{'show' : dropdownMenu == 'mitra'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('mitra')">
 									<i class="icon-briefcase"></i> Mitra
+=======
+							<!-- surat -->
+							<div class="dropdown-submenu" >
+								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('surat')">
+									<i class="icon-mail5"></i> Surat
+>>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 								</a>
 
+<<<<<<< HEAD
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu == 'mitra'}">
 	
 									<!-- mitra perseorangan -->
@@ -621,11 +636,26 @@
 									<!-- mitra perseorangan -->
 									<router-link :to="{ name: 'mitraLembaga' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['index_mitra_lembaga']">
 									  Lembaga
+=======
+									<router-link :to="{ name: 'suratMasuk'}" class="dropdown-item"  exact >
+										<i class="icon-mail-read"></i> Masuk
 									</router-link>
 
+									<router-link :to="{ name: 'suratKeluar'}" class="dropdown-item"  exact >
+										<i class="icon-mailbox"></i> Keluar
+>>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
+									</router-link>
 								</div>
+<<<<<<< HEAD
 
 							</div>
+=======
+							</div>
+							<!-- Surat 
+							<router-link :to="{ name:'surat' }" class="dropdown-item" active-class="active" exact v-if="currentUser">
+								<i class="icon-newspaper"></i> Surat
+							</router-link> -->
+>>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 
 						</div>
 					</li>
@@ -636,9 +666,7 @@
 							<i class="icon-calculator3 mr-2"></i>
 							Keuangan
 						</a>
-
 						<div class="dropdown-menu">
-
 							<!-- tambah laporan -->
 							<router-link :to="{ name:'laporanCuCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_laporan_cu']">
 								<i class="icon-plus22"></i> Tambah Laporan Statistik CU
@@ -684,16 +712,13 @@
 									<router-link :to="{ name: 'laporanCuCu',params: { cu: currentUser.id_cu, tp:'konsolidasi' } }" class="dropdown-item" active-class="active" exact v-if="currentUser">
 										Konsolidasi
 									</router-link>
-
 									<!-- divider -->
 									<div class="dropdown-divider"></div> 
-
 									<template v-for="tp in modelTp" v-if="modelTp.length > 0">
 										<router-link :to="{ name: 'laporanCuCu',params: { cu: currentUser.id_cu, tp:tp.id } }" class="dropdown-item" v-if="currentUser">{{ tp.name }}
 										</router-link>
 									</template>		
-								</div>
-
+								</div> 
 							</div>
 
 							<router-link :to="{ name: 'laporanCuDraft' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['upload_laporan_cu'] && laporanCuDraftCountStat == 'success' && laporanCuDraftCount > 0">
@@ -718,17 +743,19 @@
 							<i class="icon-cog3"></i>
 							<span class="d-md-none ml-2">Pengaturan</span>
 						</a>
+<<<<<<< HEAD
 						
 						<div class="dropdown-menu dropdown-menu-right">
 
+=======
+						<div class="dropdown-menu">
+>>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 							<!-- tambah user -->
 							<router-link :to="{ name:'userCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_user']">
 								<i class="icon-plus22"></i> Tambah User
 							</router-link>
-
 							<!-- divider -->
 							<div class="dropdown-divider"></div> 
-
 							<!-- user -->
 							<!-- if bkcu account -->
 							<div class="dropdown-submenu dropdown-submenu-left" v-if="currentUser.can['index_user'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu == 'user'}">
@@ -752,7 +779,6 @@
 											CU {{ cu.name }}
 										</router-link>
 									</template>
-
 								</div>
 							</div>
 
@@ -821,6 +847,7 @@
 				laporanCuDraftCountStat: '',
 				laporanTpDraftCount: [],
 				laporanTpDraftCountStat: '',
+<<<<<<< HEAD
 				state: '',
 				modalShow: false,
 				modalState: '',
@@ -828,6 +855,8 @@
 				modalContent: '',
 				modalColor: '',
 				modalButton: '',
+=======
+>>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 			}
 		},
 		created(){
@@ -993,12 +1022,19 @@
 					this.modalButton = 'Kembali Ke Halaman Login';
 				})
 				.catch((err) => {
+<<<<<<< HEAD
 					this.modalState = 'fail';
 					this.modalContent = this.err;
 				});
 			},
 			momentYear(){
 				return moment().year();
+=======
+					console.log(err);
+				})
+				this.$store.dispatch('auth/logout');
+				this.$router.push('/login');
+>>>>>>> 667744084973553ef57d0dec9ac0e5e1ef8bd54e
 			}
 		},
 		computed: {

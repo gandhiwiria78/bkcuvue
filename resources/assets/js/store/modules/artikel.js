@@ -99,7 +99,6 @@ export const artikel = {
         });
     },
 
-
     // edit page
     edit( {commit}, id ){
       commit('setDataStat', 'loading');

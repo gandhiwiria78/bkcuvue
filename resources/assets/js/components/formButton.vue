@@ -1,9 +1,7 @@
 <template>
     <div>
-      
       <!-- tombol desktop-->
       <div class="text-center d-none d-md-block">
-
         <!-- tutup -->
         <button type="button" @click.prevent="cancelClick" class="btn btn-light" v-if="cancelState ==='methods'">
           <i :class="cancelIcon"></i> {{ cancelTitle }}
@@ -18,7 +16,6 @@
         <button type="submit" class="btn btn-primary" :disabled="errors.any(formValidation)" >
           <i class="icon-floppy-disk"></i> Simpan
         </button>
-
       </div>
 
       <!-- tombol mobile-->
