@@ -34,10 +34,13 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/public/libs.css') }}">
     <link rel="stylesheet" href="{{ asset('css/public/myStyle.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/public/quill-better-table.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/public/quill.snow.css') }}">
+   
 
     <!-- fonts -->
     <link rel="stylesheet" href="{{ asset('css/public/font-icons.css') }}">
-
+   
     <!-- external css -->
     @yield('css')
 

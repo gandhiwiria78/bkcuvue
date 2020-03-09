@@ -57,7 +57,7 @@ class MitraOrangController extends Controller{
 				'saved' => true,
 				'message' => $this->message. ' ' .$name. ' berhasil ditambah',
 				'id' => $kelas->id
-			]);	
+			]);
 	}
 
 	public function edit($id)

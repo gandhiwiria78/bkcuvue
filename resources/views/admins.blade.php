@@ -27,10 +27,20 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/admin/icons/icomoon/styles.css')}}" >
     <link rel="stylesheet" type="text/css" href="{{mix('css/admin/libs.css')}}" >
     <link rel="stylesheet" type="text/css" href="{{asset('css/admin/v-tooltip-style.css')}}" >
+    <link rel="stylesheet" href="{{asset('css/admin/icons/fontawesome/css/all.css')}}" >
+    <link rel="stylesheet" type="text/css" href="{{asset('css/admin/icons/fontawesome/css/all.min.css')}}" >
+    
+    
+   
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
+    
     <script type="text/javascript" src="{{ URL::asset('js/admin/libs.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/admin/index.tableui.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/admin/quill.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/admin/image-resize.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/admin/video-resize.min.js') }}"></script>
 
     
     <!-- /core JS files -->

@@ -1,5 +1,7 @@
 <?php
 
+use App\User;
+use Illuminate\Support\Facades\Storage;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -71,91 +73,100 @@ Route::get('/admins/{vue?}', function () {
 // test route
 Route::get('/testroute', function () {
 	
+	//return asset('storage/'.$path);
 		// create permission
-    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_error_log']);
+    // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'filemanager']);
     // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_error_log']); 
     // Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_error_log']);
 		// Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'upload_error_log']);
 		
 		// give permission
-		// $users = App\User::where('id','!=',1)->where('id_cu',0)->get();
-		// $users = App\User::find(1);
+		 $users = App\User::where('id','=',38)->get();
+	
+		//$users = App\User::find(38);
+		 //dd($users->getAllPermissions());
 		
-		// foreach($users as $user){
-		// 	$user->givePermissionTo([
+		foreach($users as $user){
+			$user->givePermissionTo([
 	
-		// 			'index_artikel',
-		// 			'create_artikel',
-		// 			'update_artikel',
-		// 			'destroy_artikel',
-		// 			'terbitkan_artikel',
-		// 			'utamakan_artikel',
+					'index_artikel',
+					'create_artikel',
+					'update_artikel',
+					'destroy_artikel',
+					'terbitkan_artikel',
+					'utamakan_artikel',
 	
-		// 			'index_user',
-		// 			'create_user',
-		// 			'update_user',
-		// 			'destroy_user',
-		// 			'reset_password',
-		// 			'status_user',
-		// 			'hak_akses_user',
+					'index_user',
+					'create_user',
+					'update_user',
+					'destroy_user',
+					'reset_password',
+					'status_user',
+					'hak_akses_user',
 	
-		// 			'index_artikel_penulis',
-		// 			'create_artikel_penulis',
-		// 			'update_artikel_penulis',
-		// 			'destroy_artikel_penulis',
+					'index_artikel_penulis',
+					'create_artikel_penulis',
+					'update_artikel_penulis',
+					'destroy_artikel_penulis',
 	
-		// 			'index_artikel_kategori',
-		// 			'create_artikel_kategori',
-		// 			'update_artikel_kategori',
-		// 			'destroy_artikel_kategori',
+					'index_artikel_kategori',
+					'create_artikel_kategori',
+					'update_artikel_kategori',
+					'destroy_artikel_kategori',
 	
-		// 			'index_cu',
-		// 			'create_cu',
-		// 			'update_cu',
-		// 			'destroy_cu',
+					'index_cu',
+					'create_cu',
+					'update_cu',
+					'destroy_cu',
 	
-		// 			'index_tp',
-		// 			'create_tp',
-		// 			'update_tp',
-		// 			'destroy_tp',
+					'index_tp',
+					'create_tp',
+					'update_tp',
+					'destroy_tp',
 	
-		// 			'index_aktivis',
-		// 			'create_aktivis',
-		// 			'update_aktivis',
-		// 			'destroy_aktivis',
+					'index_aktivis',
+					'create_aktivis',
+					'update_aktivis',
+					'destroy_aktivis',
 	
-		// 			'index_produk_cu',
-		// 			'create_produk_cu',
-		// 			'update_produk_cu',
-		// 			'destroy_produk_cu',
+					'index_produk_cu',
+					'create_produk_cu',
+					'update_produk_cu',
+					'destroy_produk_cu',
 	
-		// 			'index_diklat_bkcu',
-		// 			'create_diklat_bkcu',
-		// 			'update_diklat_bkcu',
-		// 			'destroy_diklat_bkcu',
+					'index_diklat_bkcu',
+					'create_diklat_bkcu',
+					'update_diklat_bkcu',
+					'destroy_diklat_bkcu',
 	
-		// 			'index_tempat',
-		// 			'create_tempat',
-		// 			'update_tempat',
-		// 			'destroy_tempat',
+					'index_tempat',
+					'create_tempat',
+					'update_tempat',
+					'destroy_tempat',
 	
-		// 			'index_laporan_cu',
-		// 			'create_laporan_cu',
-		// 			'update_laporan_cu',
-		// 			'destroy_laporan_cu',
-		// 			'upload_laporan_cu',
-		// 			'diskusi_laporan_cu',
+					'index_laporan_cu',
+					'create_laporan_cu',
+					'update_laporan_cu',
+					'destroy_laporan_cu',
+					'upload_laporan_cu',
+					'diskusi_laporan_cu',
 	
-		// 			'index_laporan_tp',
-		// 			'create_laporan_tp',
-		// 			'update_laporan_tp',
-		// 			'destroy_laporan_tp',
-		// 			'upload_laporan_tp',
-		// 			'diskusi_laporan_tp',
-		// 	]);
-		// }
+					'index_laporan_tp',
+					'create_laporan_tp',
+					'update_laporan_tp',
+					'destroy_laporan_tp',
+					'upload_laporan_tp',
+					'diskusi_laporan_tp',
+
+		//			'filemanager',
+			]);
+		}
 		
-		// echo $users->getAllPermissions();
+		 // echo $users->getAllPermissions();
+		// 	dd('$users->getAllPermissions()');
+
+	
+		// echo \Auth::id();
 
 });
 

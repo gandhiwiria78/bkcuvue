@@ -62,6 +62,7 @@ class ArtikelKategoriController extends Controller{
 
 	public function store(Request $request)
 	{
+		//dd($request);
 		$this->validate($request,ArtikelKategori::$rules);
 
 		$name = $request->name;

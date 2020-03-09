@@ -70,12 +70,12 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::get('/artikelKategori', 'ArtikelKategoriController@index');
         Route::get('/artikelKategori/get', 'ArtikelKategoriController@get');
         Route::get('/artikelKategori/indexCu/{id}', 'ArtikelKategoriController@indexCu');
-        Route::get('/artikelKategori/getCu/{id}', 'ArtikelKategoriController@getCu');
         Route::get('/artikelKategori/history', 'ArtikelKategoriController@history');
+        Route::get('/artikelKategori/getCu/{id}', 'ArtikelKategoriController@getCu');
     });
     Route::group(['middleware' => ['permission:create_artikel_kategori']], function () {
-        Route::get('/artikelKategori/create', 'ArtikelKategoriController@create');
         Route::post('/artikelKategori/store', 'ArtikelKategoriController@store');
+        Route::get('/artikelKategori/create', 'ArtikelKategoriController@create');
     });
     Route::group(['middleware' => ['permission:update_artikel_kategori']], function () {
         Route::get('/artikelKategori/edit/{id}', 'ArtikelKategoriController@edit');

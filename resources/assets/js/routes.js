@@ -44,6 +44,7 @@ import user from './views/user/index.vue';
 import user_form from './views/user/form.vue';
 import user_aktivitas from './views/user/aktivitas.vue';
 import profile from './views/user/profile.vue';
+import filemanager from './views/sistem/Filemanager.vue';
 
 const routes = [
 
@@ -148,6 +149,7 @@ const routes = [
 		name: 'artikelKategoriCreate', 
 		components: { default: artikelKategori_form, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true }},
+		
 	{ path: '/artikelKategori/edit/:id',
 		name: 'artikelKategoriEdit', 
 		components: { default: artikelKategori_form, 'header': header, 'footer': footer },
@@ -388,6 +390,12 @@ const routes = [
 		name: 'laporanTpEditDraft', 
 		components: { default: laporanCu_form, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true, mode:'editDraftTp' } },		
+
+	{ path: '/filemanager',
+		name: 'filemanager', 
+		components: { default: filemanager, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true, mode:'filemanager' } },		
+	
 ]
 
 export default routes

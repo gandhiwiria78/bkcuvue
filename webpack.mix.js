@@ -27,6 +27,10 @@ mix.styles([
   'resources/assets/css/_admin/components.min.css',
   'resources/assets/css/_admin/colors.css',
   'resources/assets/css/_admin/extras/animate.min.css',
+  'resources/assets/js/_admin/plugins/editors/quill/quill.snow.min.css',
+  'resources/assets/js/_admin/plugins/editors/quill/quill-better-table.css',
+  'resources/assets/js/_admin/plugins/editors/quill/quill-video-resize.css',
+
 ], 'public/css/admin/libs.css');
 
 mix.scripts([
@@ -36,6 +40,7 @@ mix.scripts([
   'resources/assets/js/_admin/plugins/ui/slinky.min.js',
   'resources/assets/js/_admin/app.js',
   'resources/assets/js/_admin/plugins/forms/styling/uniform.min.js',
+  'resources/assets/js/_admin/plugins/editors/quill/quill.min.js',
 ], 'public/js/admin/libs.js');
 
 // for public

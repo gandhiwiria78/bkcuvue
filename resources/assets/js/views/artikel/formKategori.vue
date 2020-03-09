@@ -8,7 +8,6 @@
 
 			<!-- name -->
 			<div class="form-group" :class="{'has-error' : errors.has('form.kategoriNama')}">
-
 				<!-- title -->
 				<h5 :class="{ 'text-danger' : errors.has('form.name')}">
 					<i class="icon-cross2" v-if="errors.has('form.name')"></i>
@@ -89,6 +88,7 @@
 		methods: {
 			save() {
 				this.form.id_cu = this.id_cu;
+				console.log("dasdasdasdkdkjs" +this.id_cu);
 				this.$validator.validateAll('form').then((result) => {
 					if(result){
 						this.$store.dispatch(this.kelas + '/store',this.form);

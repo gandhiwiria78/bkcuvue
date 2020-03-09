@@ -187,13 +187,13 @@
 												Utamakan:
 											</h5>
 
+											
 											<!-- select -->
 											<select name="utamakan" data-width="100%" class="form-control" v-model="form.utamakan">
 												<option disabled value="">Silahkan pilih tipe</option>
 												<option value="1">Jadikan artikel utama</option>
 												<option value="0">Tidak jadikan artikel utama</option>
 											</select>
-
 
 											<!-- error message -->
 											<br/>
@@ -217,6 +217,8 @@
 										</div>
 									</div>
 
+									
+
 									<!-- separator -->
 									<div class="col-md-12"><br/></div>
 
@@ -227,11 +229,20 @@
 											<!-- title -->
 											<h5>Isi Artikel:</h5>
 
-											<!-- editor -->
-											<ckeditor type="classic" 
-												v-model="form.content"
-												:upload-adapter="UploadAdapter" ></ckeditor>
+											<!-- editor tester -->
+											<!-- <ckeditor :editor="editor" @ready="onReady" v-model="editorData" /></ckeditor>
+											<h1>terer</h1> -->
+											
 
+
+											<text-editor></text-editor>
+											<!-- <ckeditor type="classic" 
+												ref="ckeditor"
+												v-model="form.content"
+												@ready="onReady"
+												:editor="editor"
+              									:config="editorConfig"
+												 ></ckeditor> -->
 										</div>
 									</div>
 
@@ -258,7 +269,7 @@
 		</div>
 
 		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :color="modalColor" @batal="modalTutup" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup"  @backgroundClick="modalBackgroundClick">
+		<app-modal :size="modalSize" :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :color="modalColor" @batal="modalTutup" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup"  @backgroundClick="modalBackgroundClick">
 			
 			<!-- title -->
 			<template slot="modal-title">
@@ -277,15 +288,36 @@
 				<form-kategori
 				:id_cu="id_cu"
 				@cancelClick="modalTutup"></form-kategori>
-			</template>]
-
+			</template>
+			
+			<template slot="modal-body3" class="form-horizontal">
+				<form @submit.prevent="choice" enctype="multipart/form-data" data-vv-scope="form">
+				<file-manager v-bind:settings="settings" ></file-manager>
+				</hr>
+				<form-button
+					:cancelState="'methods'"
+					:formValidation="'form'"
+					@cancelClick="cancelClick"></form-button>
+				</form>
+			</template>
 		</app-modal>
-
+		
 	</div>
 </template>
 
 <script>
+	
+// import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
+// import imageIcon from '@ckeditor/ckeditor5-core/theme/icons/image.svg';
+// import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
+// class InsertImage extends Plugin {
+// 		init() {
+// 			console.log( 'InsertImage was initialized' );
+// 		}
+// }
+
 	import { mapGetters } from 'vuex';
+	
 	import pageHeader from "../../components/pageHeader.vue";
 	import { toMulipartedForm } from '../../helpers/form';
 	import appImageUpload from '../../components/ImageUpload.vue';
@@ -295,10 +327,46 @@
 	import formInfo from "../../components/formInfo.vue";
 	import formKategori from "./formKategori.vue";
 	import formPenulis from "./formPenulis.vue";
+	import {ImageDrop}  from 'quill-image-drop-module';
 	import { getLocalUser } from "../../helpers/auth";
 	import { url_config } from '../../helpers/url.js';
+	import textEditor from '../../components/TextEditor';
+
+	//import * as Quill from 'quill';
+	
+	import {  Quill } from "vue-quill2-editor";
+	import * as QuillTableUI from 'quill-table-ui';	
+	import QuillBetterTable from 'quill-better-table';
+	import quillTable from 'quill-table';
+    //const quillTable = require('quill-table');
+	Quill.register(quillTable.TableCell);
+	Quill.register(quillTable.TableRow);
+	Quill.register(quillTable.Table);
+	Quill.register(quillTable.Contain);
+	Quill.register('modules/table', quillTable.TableModule);
+	Quill.register('modules/imageDrop', ImageDrop);
+	Quill.register({
+	'modules/better-table': QuillBetterTable
+	}, true)
+
+	//import Quill from 'quill';
+	//import {Quill } from 'vue2-editor';
+	//import InsertImage from '../../helpers/pluginckeditor';
+	// import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
+	//import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
+
+	 //import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
+	// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+	
+	
+	
 
 	export default {
+		props: {
+
+            defaultValue: String,
+            disabled: Boolean
+        },
 		components: {
 			pageHeader,
 			appModal,
@@ -307,10 +375,66 @@
 			formButton,
 			formInfo,
 			formKategori,
-			formPenulis
+			formPenulis,
+			textEditor
 		},
 		data() {
 			return {
+				modalSize:'',
+				
+				editorOption:{
+					
+					modules: {
+						imageDrop: true,
+						table:false,
+						'better-table': {
+							operationMenu: {
+							items: {
+								unmergeCells: {
+								text: 'Another unmerge cells name'
+								}
+							}
+							}
+						},
+						toolbar: {
+							container:[
+								[{ font: [] }],
+								[{ header: [false, 1, 2, 3, 4, 5, 6] }],
+								[{ size: ["small", false, "large", "huge"] }],
+								["bold", "italic", "underline", "strike"],
+								[
+									{ align: "" },
+									{ align: "center" },
+									{ align: "right" },
+									{ align: "justify" }
+								],
+								[{ header: 1 }, { header: 2 }],
+
+								["blockquote", "code-block", "#customToolbar"],
+
+								[{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
+
+								[{ script: "sub" }, { script: "super" }],
+
+								[{ indent: "-1" }, { indent: "+1" }],
+
+								[{ color: [] }, { background: [] }],
+
+								["link", "image", "video", "formula"],
+
+								[{ direction: "rtl" }],
+								["clean"],
+								
+							],
+							handlers: {
+								'bold': ()=>{this.modalOpen_FileManager()},
+								'custombtn':()=>{this.modalxxx()}
+							},
+						},
+						
+					}
+				},
+				content:'',
 				title: 'Tambah Artikel',
 				titleDesc: 'Menambah artikel baru',
 				titleIcon: 'icon-plus3',
@@ -318,34 +442,20 @@
 				kelas: 'artikel',
 				id_cu: '',
 				utama: '',
-				UploadAdapter: function (loader) {
-          this.loader = loader
-          this.upload = () => {
-            const body = new FormData();
-						const user = getLocalUser();
-						let token = user.token;
+				selectItems:[],
+				settings: {
 
-						body.append('gambar', this.loader.file);
-	
-            return fetch(url_config.api_url + 'artikel/upload', {
-							headers: {"Authorization": 'Bearer ' + token},
-              body: body,
-              method: 'POST'
-            })
-						.then(response => response.json())
-              .then(downloadUrl => {
-                return {
-									default: downloadUrl
-								}
-              })
-              .catch(error => {
-                console.log(error);
-              });
-          }
-          this.abort = () => {
-            console.log('Abort upload.')
-          }
-        },
+					headers: {
+					'X-Requested-With': 'XMLHttpRequest',
+					Authorization: `Bearer `+getLocalUser().token,
+					},
+					// baseUrl: 'https://bkcuvue.test/admins/filemanager/tree?disk=CUKB',   // overwrite base url Axios
+					windowsConfig: 1,                           // overwrite config
+				},
+				UploadAdapter: function (loader) {
+					
+				},
+                editorData: '<p>Content of the editor.</p>',
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -353,13 +463,20 @@
 				modalContent: '',
 				submited: false,
 				submitedKategori: false,
-				submitedPenulis: false
+				submitedPenulis: false,
+				cancelTitle: 'Tutup',
+				cancelIcon: 'icon-cross',
+				cancelState: 'methods',
 			}
 		},
 		beforeRouteEnter(to, from, next) {
 			next(vm => vm.fetch());
 		},
+		mounted(){
+			//this.$refs.editor.quill.insertText(this.$refs.editor.quill.getSelection( true ).index, '%greetings-en%');
+		},
 		created(){
+			//console.log(this.$refs);
 			if(this.currentUser.id_cu === 0){
 				if(this.modelCuStat != 'success'){
 					this.$store.dispatch('cu/getHeader');
@@ -367,10 +484,11 @@
 			}
 			if(this.$route.meta.mode !== 'edit' && this.form.id_cu === undefined){
 				this.form.id_cu = this.currentUser.id_cu;
+				this.id_cu = this.currentUser.id_cu;
 				this.changeCU(this.currentUser.id_cu);
 			}
 		},
-		watch: {
+		watch: {	
 			formStat(value){
 				if(value === "success"){
 					if(this.$route.meta.mode !== 'edit'){
@@ -387,7 +505,6 @@
 				this.modalShow = true;
 				this.modalState = value;
 				this.modalColor = '';
-
 				if(value === "success"){
 					this.modalTitle = this.updateResponse.message;
 				}else{
@@ -398,7 +515,6 @@
 			updateKategoriStat(value){
 				this.modalState = value;
 				this.modalColor = '';
-
 				if(value === "success"){
 					this.modalTitle = this.updateKategoriResponse.message;
 					this.$store.dispatch('artikelKategori/getCu', this.id_cu);
@@ -411,7 +527,6 @@
 			updatePenulisStat(value){
 				this.modalState = value;
 				this.modalColor = '';
-
 				if(value === "success"){
 					this.modalTitle = this.updatePenulisResponse.message;
 					this.$store.dispatch('artikelPenulis/getCu', this.id_cu);	
@@ -421,15 +536,22 @@
 					this.modalContent = this.updatePenulisResponse.message;
 				}
 			}
-    },
+	},
+	
 		methods: {
+			onReady(editors){
+
+			},
+			imageButton(){
+
+			},
 			fetch(){
+				//console.log(this.$refs);
 				if(this.currentUser.id_cu === 0){
 					if(this.modelCuStat != 'success'){
 						this.$store.dispatch('cu/getHeader');
 					}
 				}
-
 				if(this.$route.meta.mode === 'edit'){
 					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
 					this.title = 'Ubah Artikel';
@@ -470,6 +592,14 @@
 					}
 				});
 			},
+			choice(){
+				let a = '/files/'+ this.selectedItems[0].basename;
+				console.log(this.selectedItems);
+				this.content += "<img src='"+a+"'>";
+				this.modalTutup()	;
+
+				//insertEmbed(10, 'image', 'https://quilljs.com/images/cloud.png');
+			},
 			changeCU(id){
 				this.$store.dispatch('artikelPenulis/getCu', id);	
 				this.$store.dispatch('artikelKategori/getCu', id);
@@ -485,10 +615,10 @@
  				if(this.updateStat === 'success'){
 					this.back();
 				}
-
 				this.modalShow = false;
 				this.submitedKategori = false;
 				this.submitedPenulis = false;
+				console.log('test');
 			},
 			modalBackgroundClick(){
 				if(this.modalState === 'success'){
@@ -501,25 +631,49 @@
 			},
 			modalOpen_Penulis(){
 				this.id_cu = this.form.id_cu;
-
 				this.modalShow = true;
 				this.modalState = 'normal1';
 				this.modalColor = 'bg-primary';
 				this.modalTitle = 'Tambah penulis artikel';
 			},
 			modalOpen_Kategori() {
-				this.id_cu = this.form.id_cu;
-
+				this.id_cu = this.currentUser.id_cu;
+				console.log('dasdasds22222'+ this.id_cu);
 				this.modalShow = true;
 				this.modalState = 'normal2';
 				this.modalColor = 'bg-primary';
 				this.modalTitle = 'Tambah kategori artikel';
 			},
+			modalOpen_FileManager(){
+				this.modalShow = true;
+				this.modalState = 'normal3';
+				this.modalSize = 'modal-full';
+				this.modalColor = 'bg-primary';
+				this.modalTitle = 'Upload image';
+				console.log("modalOpenfilemanager");
+			},
 			processFile(event) {
 				this.form.gambar = event.target.files[0]
 			},
+			editorInput(e) {
+                this.$emit('getEditorData', e);
+			},
+			cancelClick(){
+				console.log('test')
+			},
+			modalxxx(){
+				let table = this.$refs.editor.quill.getModule('better-table');
+				table.insertTable(3, 3)
+				console.log(table);
+				//table.insertTable(2, 2);
+				
+			}
+			
 		},
 		computed: {
+			...mapGetters('fm',{
+				selectedItems:'selectedItems'
+			}),
 			...mapGetters('auth',{
 				currentUser: 'currentUser'
 			}),
@@ -549,6 +703,8 @@
 			}),
 		}
 	}
+
+	
 </script>
 
 <style lang="css" src="../../../../../public/css/admin/ckeditor-document-style.css" scoped>
